@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+url       = "postgresql://postgres:12345@localhost:5432/mydatabase" // local database URL with superuser
+directUrl = "postgresql://postgres:12345@localhost:5432/mydatabase" // local direct connection URL with superuser
+}
+
+model Playground {
+  id      String    @id @default(uuid())
+  json    String
+  Message Message[]
+}
+
+model Message {
+  id           String     @id @default(uuid())
+  username     String
+  text         String
+  playgroundId String
+  playground   Playground @relation(fields: [playgroundId], references: [id])
+}
