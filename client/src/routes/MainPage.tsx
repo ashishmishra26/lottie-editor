@@ -4,6 +4,8 @@ import Container from "../components/Container";
 import Header from "../components/Header";
 import useAPI from "../hooks/useAPI";
 import Upload from "../components/Upload";
+import Card from "../components/Card";
+import { Fragment } from "react/jsx-runtime";
 
 export default function MainPage() {
   const { getFeaturedAnimations } = useAPI();
@@ -32,6 +34,44 @@ export default function MainPage() {
       <Header />
       <Container className={style.container}>
         <Upload />
+        <div className={style.featured}>
+          <h1 className={style.title}>Featured animations</h1>
+          <div className={style.grid}>
+            {/* Loading */}
+            {!isFetched &&
+              Array(12)
+                .fill(null)
+                .map((_n, i) => <Card animation={null} key={i} />)}
+
+            {/* Loading finished */}
+            {isFetched &&
+              (data ? (
+                data?.pages.map((page, index) => (
+                  <Fragment key={index}>
+                    {page.animations.map((animation) => (
+                      <Card key={animation.id} animation={animation} />
+                    ))}
+                  </Fragment>
+                ))
+              ) : (
+                <div className={style.sorry}>
+                  Sorry, we couldn&apos;t fetch featured animations.
+                </div>
+              ))}
+          </div>
+
+          {/* Show more */}
+          {!!data && (
+            <div className={style.buttonWrapper}>
+              <button
+                className="rounded-xl theme-brand-tint hover:theme-brand"
+                onClick={fetchNextPage}
+              >
+                {isFetchingNextPage ? "Loading..." : "Show more"}
+              </button>
+            </div>
+          )}
+        </div>
       </Container>
     </>
   );

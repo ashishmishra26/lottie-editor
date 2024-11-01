@@ -9,9 +9,7 @@ export default function useAPI() {
   }: {
     pageParam: string;
   }) => {
-    const url = new URL(
-      `${import.meta.env.VITE_API_ENDPOINT}/v1/featuredAnimations`
-    );
+    const url = new URL(`http://localhost:3006/api/v1/featuredAnimation`);
 
     if (pageParam) {
       url.searchParams.set("cursor", pageParam);
@@ -19,6 +17,9 @@ export default function useAPI() {
 
     const response = await fetch(url.toString(), {
       method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     });
 
     return (await response.json()) as FeaturedAnimationsListResponseData;
@@ -26,7 +27,7 @@ export default function useAPI() {
 
   const openPlaygroundForData = async (data: Animation) => {
     const response = await fetch(
-      `${import.meta.env.VITE_API_ENDPOINT}/v1/playground/create`,
+      `http://localhost:3006/api/v1/playground/create`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -38,7 +39,7 @@ export default function useAPI() {
 
   const getPlaygroundById = async (id: string) => {
     const response = await fetch(
-      `${import.meta.env.VITE_API_ENDPOINT}/v1/playground/${id}`,
+      `http://localhost:3006/api/v1/playground/${id}`,
       {
         method: "GET",
       }

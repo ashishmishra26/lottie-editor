@@ -31,7 +31,7 @@ export default function Upload() {
     title: "text-4xl lg:text-8xl font-semibold text-t-text",
     description: "text-base lg:text-xl mt-3 lg:mt-5",
     buttonWrapper: "flex flex-wrap items-center gap-4 lg:gap-6 mt-4 lg:mt-6",
-    uploadBtn: "rounded-2xl theme-brand-tint hover:theme-brand",
+    uploadBtn: "rounded-2xl bg theme-brand-tint hover:theme-brand",
     error:
       "text-sm theme-error text-t-text bg-t-bg px-3 leading-relaxed py-1 rounded-xl",
   };
