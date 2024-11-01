@@ -1,5 +1,7 @@
 import Container from "./Container.tsx";
 
+import Logo from "../assets/lottiefiles.svg";
+
 export default function Header() {
   const style = {
     header:
@@ -11,7 +13,12 @@ export default function Header() {
 
   return (
     <header className={style.header}>
-      <Container className={style.container}>Lottie Editor</Container>
+      <Container className={style.container}>
+        <div className="flex items-center gap-2">
+          <img src={Logo} style={{ width: "20px", height: "20px" }}></img>
+          <span>Lottie Editor</span>
+        </div>
+      </Container>
     </header>
   );
 }

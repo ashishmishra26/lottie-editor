@@ -28,10 +28,11 @@ export default function Upload() {
   });
 
   const style = {
-    title: "text-4xl lg:text-8xl font-semibold text-t-text",
+    title: "heading text-2xl lg:text-4xl font-bold text-t-text",
     description: "text-base lg:text-xl mt-3 lg:mt-5",
-    buttonWrapper: "flex flex-wrap items-center gap-4 lg:gap-6 mt-4 lg:mt-6",
-    uploadBtn: "rounded-2xl bg theme-brand-tint hover:theme-brand",
+    buttonWrapper: "flex flex-col just justify-center items-center gap-4 lg:gap-6 mt-4 lg:mt-6 border-dashed border-2 border-t-border rounded-xl p-6",
+    uploadBtn:
+      "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded",
     error:
       "text-sm theme-error text-t-text bg-t-bg px-3 leading-relaxed py-1 rounded-xl",
   };
@@ -39,8 +40,12 @@ export default function Upload() {
   return (
     <div>
       <div className={style.buttonWrapper}>
-        <button className="uploadBtn" onClick={() => input.current?.click()}>
-          Upload
+        <h1 className={style.title}>Upload the animation JSON</h1>
+        <button
+          className={style.uploadBtn}
+          onClick={() => input.current?.click()}
+        >
+          {playgroundIsOpening ? <span>Loading...</span> : <span>Upload</span>}
         </button>
 
         <input

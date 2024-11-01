@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useAPI from "../hooks/useAPI.tsx";
 import { FeaturedAnimation } from "../types/types.ts";
-import LottiePreviewByUrl from "./LottiePreview.tsx";
+import LottiePreview from "./LottiePreview.tsx";
 import Skeleton from "./Skeleton.tsx";
 import SkeletonText from "./SkeletonText.tsx";
 
@@ -32,6 +32,8 @@ export default function Card({ animation }: AnimationCardProps) {
         const response = await fetch(animation.jsonUrl);
         const animationJSON = (await response.json()) as Animation;
         const playgroundUrl = await openPlaygroundForData(animationJSON);
+
+        console.log(playgroundUrl);
 
         navigate(`/${playgroundUrl}`);
       },
@@ -71,7 +73,7 @@ export default function Card({ animation }: AnimationCardProps) {
         {!animation ? (
           <Skeleton fill />
         ) : animation.jsonUrl ? (
-          <LottiePreviewByUrl url={animation.jsonUrl} className={style.image} />
+          <LottiePreview url={animation.jsonUrl} className={style.image} />
         ) : (
           <Icon icon="carbon:no-image" className={style.noImage} />
         )}

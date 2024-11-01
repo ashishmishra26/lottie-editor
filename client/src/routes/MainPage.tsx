@@ -23,10 +23,9 @@ export default function MainPage() {
     title: "heading text-2xl lg:text-4xl font-bold text-t-text",
     featured: "mt-10 lg:mt-16",
     grid: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 mt-4 lg:mt-6",
-    sorry:
+    error:
       "rounded-2xl col-span-2 md:col-span-3 lg:col-span-4 p-6 text-center text-base border border-t-border",
-    buttonWrapper: "flex justify-center mt-8 lg:mt-12",
-    uploadButton: "rounded-2xl theme-brand-tint hover:theme-brand",
+      buttonWrapper: "flex justify-center mt-6",
   };
 
   return (
@@ -37,13 +36,10 @@ export default function MainPage() {
         <div className={style.featured}>
           <h1 className={style.title}>Featured animations</h1>
           <div className={style.grid}>
-            {/* Loading */}
             {!isFetched &&
               Array(12)
                 .fill(null)
-                .map((_n, i) => <Card animation={null} key={i} />)}
-
-            {/* Loading finished */}
+                .map((_, i) => <Card animation={null} key={i} />)}
             {isFetched &&
               (data ? (
                 data?.pages.map((page, index) => (
@@ -54,17 +50,15 @@ export default function MainPage() {
                   </Fragment>
                 ))
               ) : (
-                <div className={style.sorry}>
-                  Sorry, we couldn&apos;t fetch featured animations.
+                <div className={style.error}>
+                  Failed to fetch featured animations, please try again.
                 </div>
               ))}
           </div>
-
-          {/* Show more */}
           {!!data && (
             <div className={style.buttonWrapper}>
               <button
-                className="rounded-xl theme-brand-tint hover:theme-brand"
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 onClick={fetchNextPage}
               >
                 {isFetchingNextPage ? "Loading..." : "Show more"}
