@@ -9,7 +9,7 @@ export default function useAPI() {
   }: {
     pageParam: string;
   }) => {
-    const url = new URL(`http://localhost:3006/api/v1/featuredAnimation`);
+    const url = new URL(`http://localhost:3006/api/v1/featuredAnimations`);
 
     if (pageParam) {
       url.searchParams.set("cursor", pageParam);
@@ -17,9 +17,6 @@ export default function useAPI() {
 
     const response = await fetch(url.toString(), {
       method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
     });
 
     return (await response.json()) as FeaturedAnimationsListResponseData;
