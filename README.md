@@ -38,6 +38,8 @@ To run the Lottie Editor locally, follow these steps:
 
     Navigate to http://localhost:5173 to use the editor in your browser.
 
+Note: Check `server/README.md` for instructions to run server locally.
+
 
 ## Built With
 
