@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,93 +8,94 @@
     color-scheme: dark;
   }
 
+  /* Neutral */
   .theme-neutral {
-    --color-bg: #0b0d07;
-    --color-text: #ffffff;
-    --color-text-light: #a8aba3;
-    --color-border: #484b43;
+    --color-bg: 18 18 18;
+    --color-text: 245 245 245;
+    --color-text-light: 190 190 190;
+    --color-border: 85 85 85;
   }
 
   .dark .theme-neutral {
-    --color-bg: #000000;
-    --color-text: #dcdcdc;
-    --color-text-light: #969696;
-    --color-border: #323232;
+    --color-bg: 12 12 12;
+    --color-text: 235 235 235;
+    --color-text-light: 160 160 160;
+    --color-border: 60 60 60;
   }
 
   /* Neutral Tint */
   .theme-neutral-tint {
-    --color-bg: #22231f;
-    --color-text: #ffffff;
-    --color-text-light: #aaaea2;
-    --color-border: #53564e;
+    --color-bg: 45 45 45;
+    --color-text: 250 250 250;
+    --color-text-light: 200 200 200;
+    --color-border: 90 90 90;
   }
 
   .dark .theme-neutral-tint {
-    --color-bg: #141414;
-    --color-text: #dcdcdc;
-    --color-text-light: #969696;
-    --color-border: #323232;
+    --color-bg: 30 30 30;
+    --color-text: 220 220 220;
+    --color-text-light: 170 170 170;
+    --color-border: 70 70 70;
   }
 
   /* Neutral Light */
   .theme-neutral-light {
-    --color-bg: #ffffff;
-    --color-text: #20272c;
-    --color-text-light: #4c5863;
-    --color-border: #d9e0e6;
+    --color-bg: 255 255 255;
+    --color-text: 40 40 40;
+    --color-text-light: 80 80 80;
+    --color-border: 225 225 225;
   }
 
   .theme-neutral-light-tint {
-    --color-bg: #fafcfd;
-    --color-text: #20272c;
-    --color-text-light: #4c5863;
-    --color-border: #d9e0e6;
+    --color-bg: 245 245 245;
+    --color-text: 35 35 35;
+    --color-text-light: 75 75 75;
+    --color-border: 220 220 220;
   }
 
   /* Error */
   .theme-error {
-    --color-bg: #d44121;
-    --color-text: #ffffff;
-    --color-text-light: #ffe3dc;
-    --color-border: #f59782;
+    --color-bg: 230 60 60;
+    --color-text: 255 255 255;
+    --color-text-light: 255 220 220;
+    --color-border: 240 150 150;
   }
 
   .theme-error-tint {
-    --color-bg: #b5361a;
-    --color-text: #ffffff;
-    --color-text-light: #f5d9d2;
-    --color-border: #e58d7a;
+    --color-bg: 200 50 50;
+    --color-text: 255 255 255;
+    --color-text-light: 245 200 200;
+    --color-border: 230 130 130;
   }
 
   /* Success */
   .theme-success {
-    --color-bg: #5aa138;
-    --color-text: #ffffff;
-    --color-text-light: #e9ffdf;
-    --color-border: #c1ddb4;
+    --color-bg: 60 175 75;
+    --color-text: 255 255 255;
+    --color-text-light: 225 255 235;
+    --color-border: 190 220 180;
   }
 
   .theme-success-tint {
-    --color-bg: #478c26;
-    --color-text: #ffffff;
-    --color-text-light: #ceecc0;
-    --color-border: #8dc274;
+    --color-bg: 50 150 65;
+    --color-text: 255 255 255;
+    --color-text-light: 210 240 225;
+    --color-border: 160 190 160;
   }
 
   /* Brand */
   .theme-brand {
-    --color-bg: #00ddb3;
-    --color-text: #ffffff;
-    --color-text-light: #ffffff;
-    --color-border: #ffffff;
+    --color-bg: 0 200 180;
+    --color-text: 255 255 255;
+    --color-text-light: 255 255 255;
+    --color-border: 245 245 245;
   }
 
   .theme-brand-tint {
-    --color-bg: #009d91;
-    --color-text: #ffffff;
-    --color-text-light: #ffffff;
-    --color-border: #ffffff;
+    --color-bg: 0 145 135;
+    --color-text: 255 255 255;
+    --color-text-light: 245 245 245;
+    --color-border: 230 230 230;
   }
 
   .bb {

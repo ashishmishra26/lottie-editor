@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: "/:id",
+        path: "/:playgroundId",
         element: <PlaygroundLoader />,
       },
     ],

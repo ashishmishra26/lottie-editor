@@ -25,7 +25,7 @@ export default function MainPage() {
     grid: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6 mt-4 lg:mt-6",
     error:
       "rounded-2xl col-span-2 md:col-span-3 lg:col-span-4 p-6 text-center text-base border border-t-border",
-      buttonWrapper: "flex justify-center mt-6",
+    buttonWrapper: "flex justify-center mt-8 lg:mt-12",
   };
 
   return (

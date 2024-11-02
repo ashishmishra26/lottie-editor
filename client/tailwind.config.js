@@ -5,7 +5,25 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,css}"],
   darkMode: "selector",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        t: {
+          bg: "rgb(var(--color-bg) / <alpha-value>)",
+          text: "rgb(var(--color-text) / <alpha-value>)",
+          "text-light": "rgb(var(--color-text-light) / <alpha-value>)",
+          border: "rgb(var(--color-border) / <alpha-value>)",
+        },
+      },
+      keyframes: {
+        skeleton: {
+          "0%": { transform: "translate3d(-100%, 0, 0)" },
+          "100%": { transform: "translate3d(100%, 0, 0)" },
+        },
+      },
+      animation: {
+        skeleton: "skeleton 1.5s ease infinite",
+      },
+    },
   },
   plugins: [
     plugin(({ addVariant }) => {
