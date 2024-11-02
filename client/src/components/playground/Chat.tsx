@@ -86,7 +86,6 @@ const ChatComponent = () => {
           ) : null}
         </div>
       </div>
-      {/* Message form */}
       <form onSubmit={sendMessage} className={style.form}>
         <input
           type="text"
@@ -107,7 +106,7 @@ const ChatComponent = () => {
             name="message"
             required
           />
-          <button type="submit" className="rounded-xl">
+          <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl">
             Send
           </button>
         </div>
