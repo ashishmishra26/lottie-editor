@@ -1,4 +1,4 @@
-import type { SocketMessage } from "../types/types";
+import type { SocketMessage } from "../types/types.ts";
 import { get, set } from "radash";
 import { FastifyInstance } from "fastify";
 import { WebSocket } from "@fastify/websocket";
