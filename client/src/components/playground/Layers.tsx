@@ -61,7 +61,7 @@ function Layer({ layer, index, path, level }: LayerProps) {
       }))
     );
 
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   function deleteLayer() {
     selectedLayers

@@ -2,17 +2,13 @@ import { Icon } from "@iconify/react";
 import { Animation } from "@lottiefiles/lottie-types";
 import { useMutation } from "@tanstack/react-query";
 import clsx from "clsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import useAPI from "../hooks/useAPI.tsx";
 import { FeaturedAnimation } from "../types/types.ts";
 import LottiePreview from "./LottiePreview.tsx";
 import Skeleton from "./Skeleton.tsx";
 import SkeletonText from "./SkeletonText.tsx";
-
-function getFullName(firstName: string, lastName: string) {
-  return `${firstName || ""} ${lastName || ""}`.trim();
-}
 
 type AnimationCardProps = {
   animation: FeaturedAnimation | null;
@@ -45,12 +41,12 @@ export default function Card({ animation }: AnimationCardProps) {
     noImage: "w-10 h-10 m-auto inset-0 absolute opacity-50",
     content: "mt-2.5",
     overlay:
-      "absolute inset-x-0 bottom-0 flex flex-col p-4 transition-transform duration-300 ease-in-out transform translate-y-full opacity-90 bg-white bg-opacity-90 group-hover:translate-y-0 group-hover:opacity-100",
-    name: "block font-bold text-sm lg:text-base transition-colors",
+      "absolute inset-x-0 bottom-0 flex flex-col p-4 transition-transform duration-300 ease-in-out transform translate-y-full opacity-90 bg-t-bg bg-opacity-90 group-hover:translate-y-0 group-hover:opacity-100",
+    name: "block font-semibold text-sm lg:text-base transition-colors",
     author:
       "flex items-center gap-2 text-xs lg:text-sm mt-1.5 flex-1 overflow-hidden transition-colors hover:text-t-text",
     avatar: "w-4 h-4 rounded-full shrink-0",
-    authorName: "truncate mt-1",
+    authorName: "truncate",
     likes: "flex text-sm items-center gap-1",
     likesIcon: "w-3 lg:w-4 h-3 lg:h-4",
     loaderIcon:
@@ -114,10 +110,9 @@ export default function Card({ animation }: AnimationCardProps) {
           )}
           <div className={style.authorName}>
             {animation ? (
-              getFullName(
-                animation.createdBy.firstName,
-                animation.createdBy.lastName
-              )
+              `${animation.createdBy.firstName ?? ""} ${
+                animation.createdBy.lastName ?? ""
+              }`
             ) : (
               <SkeletonText fullWidth />
             )}

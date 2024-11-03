@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 export default function Container({ className, children }: ContainerProps) {
-  const styles = ["px-5 lg:px-10 mx-auto max-w-7xl"];
+  const styles = ["px-5 lg:px-10 mx-auto max-w-9xl"];
 
   return <div className={clsx(styles, className)}>{children}</div>;
 }

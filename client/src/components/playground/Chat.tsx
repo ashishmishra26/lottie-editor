@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react";
 import { socketContext } from "../../routes/Playground.tsx";
 import usePlaygroundStore from "../../stores/playgroundStore.ts";
 
-const ChatComponent = () => {
+const Chat = () => {
   const socket = useContext(socketContext)!;
   const messages = usePlaygroundStore(useShallow(({ messages }) => messages));
   const [input, setInput] = useState("");
@@ -49,11 +49,11 @@ const ChatComponent = () => {
   }[socketReadyState || ReadyState.CLOSED];
 
   const style = {
-    container: "fixed bottom-5 right-5 z-50",
+    container: "fixed bottom-5 bg-t-bg right-10 z-50",
     floatingButton:
-      "text-t-text font-bold border border-t-border p-4 flex justify-center rounded-md cursor-pointer shadow-md",
+      "text-t-text font-bold border border-t-border p-4 flex justify-center rounded-md cursor-pointer shadow-md bg-t-bg",
     chatBox:
-      "bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden transition-all duration-300 flex flex-col w-80 h-[70vh]",
+      "shadow-lg rounded-lg overflow-hidden transition-all duration-300 flex flex-col w-80 h-[70vh]",
     header:
       "flex justify-between items-center text-t-text text-base p-3 border-b border-b-border",
     form: "p-3 flex-col border-t border-t-border gap-y-2.5",
@@ -130,7 +130,7 @@ const ChatComponent = () => {
             />
             <button
               type="submit"
-              className="bg-green-500 hover:bg-green-700 text-white font-bold w-full py-2 px-4 rounded-xl"
+              className="bg-green-500 hover:bg-green-700 text-t-text font-bold w-full py-2 px-4 rounded-xl"
             >
               Send
             </button>
@@ -141,4 +141,4 @@ const ChatComponent = () => {
   );
 };
 
-export default ChatComponent;
+export default Chat;

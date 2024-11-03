@@ -9,7 +9,7 @@ import { useShallow } from "zustand/react/shallow";
 
 import LoadingScreen from "../components/LoadingScreen.tsx";
 import AnimationPreview from "../components/playground/AnimationPreview.tsx";
-import ChatComponent from "../components/playground/Chat.tsx";
+import Chat from "../components/playground/Chat.tsx";
 import LayerActions from "../components/playground/LayerActions.tsx";
 import Layers from "../components/playground/Layers.tsx";
 import MultipleLayerActions from "../components/playground/MultipleLayerActions.tsx";
@@ -19,6 +19,8 @@ import useMessagesFromSocket from "../hooks/useMessagesFromSocket.tsx";
 import useUpdatesFromSocket from "../hooks/useUpdatesFromSocket.tsx";
 import usePlaygroundStore from "../stores/playgroundStore.ts";
 import { SocketMessage } from "../types/types.ts";
+import Header from "../components/Header.tsx";
+import Container from "../components/Container.tsx";
 
 export const socketContext = createContext<null | WebSocketHook<SocketMessage>>(
   null
@@ -112,7 +114,7 @@ export function Playground() {
   const style = {
     layout:
       "overflow-hidden flex flex-col lg:h-screen lg:grid lg:grid-cols-[18rem,1fr]",
-    col: "flex flex-col px-3 lg:p-3 last:mt-3 lg:last:mt-0 last:pb-3 gap-3 flex-1 overflow-hidden",
+    col: "flex flex-col px-3 lg:p-3 lg:pl-0 last:mt-3 lg:last:mt-0 last:pb-3 gap-3 flex-1 overflow-hidden",
     card: "theme-neutral-light dark:theme-neutral flex flex-col bg-t-bg text-t-text-light border border-t-border rounded-md overflow-auto relative shadow-sm",
     cardTitle:
       "text-t-text text-base border-b bg-t-bg border-t-border px-3 py-2 heading sticky top-0 bg z-[1]",
@@ -120,7 +122,8 @@ export function Playground() {
     animationCol: "order-[-1] h-[100vw] lg:order-none lg:h-auto p-4",
     layersCard: "max-h-[15rem] lg:max-h-none flex-1",
     layersCardHeader: "flex items-center justify-between gap-3",
-    layersCardHelper: "hidden lg:block text-xs p-3 border-b border-t-border text-t-text-light font-normal",
+    layersCardHelper:
+      "hidden lg:block text-xs p-3 border-b border-t-border text-t-text-light font-normal",
     layers: "py-1",
     noLayersText: "text-t-text-light p-3 text-sm",
     discussionCard: "absolute h-[24rem] lg:h-auto lg:flex-grow",
@@ -137,65 +140,70 @@ export function Playground() {
   };
 
   return (
-    <div className={style.layout}>
-      <div className={style.col}>
-        {readyState === ReadyState.CLOSED && (
-          <div className={clsx(style.card, style.offlineCard)}>
-            <div className={style.cardContent}>
-              <div className={style.offlineTitle}>You are offline</div>
-              <div className={style.offlineText}>
-                Connection has been closed. Please refresh your page.
+    <>
+      <Header />
+      <Container>
+        <div className={style.layout}>
+          <div className={style.col}>
+            {readyState === ReadyState.CLOSED && (
+              <div className={clsx(style.card, style.offlineCard)}>
+                <div className={style.cardContent}>
+                  <div className={style.offlineTitle}>You are offline</div>
+                  <div className={style.offlineText}>
+                    Connection has been closed. Please refresh your page.
+                  </div>
+                  <button
+                    onClick={() => location.reload()}
+                    className={style.offlineButton}
+                  >
+                    Refresh
+                  </button>
+                </div>
               </div>
-              <button
-                onClick={() => location.reload()}
-                className={style.offlineButton}
-              >
-                Refresh
-              </button>
+            )}
+
+            <div className={clsx(style.card, style.settingsCard)}>
+              <div className={style.cardContent}>
+                <Settings />
+              </div>
+            </div>
+
+            {selectedLayers.length === 1 && (
+              <LayerActions layerKey={selectedLayers[0]} />
+            )}
+
+            {selectedLayers.length > 1 && (
+              <MultipleLayerActions count={selectedLayers.length} />
+            )}
+
+            <div className={clsx(style.card, style.layersCard)}>
+              <div className={style.cardTitle}>
+                <div className={style.layersCardHeader}>
+                  <div>Layers</div>
+                </div>
+              </div>
+              <div className={style.layersCardHelper}>
+                Shift + Click for multi-select
+              </div>
+              {json?.layers?.length ? (
+                <Layers
+                  layers={json.layers}
+                  path="layers"
+                  className={style.layers}
+                />
+              ) : (
+                <div className={style.noLayersText}>No layers found.</div>
+              )}
             </div>
           </div>
-        )}
 
-        <div className={clsx(style.card, style.settingsCard)}>
-          <div className={style.cardContent}>
-            <Settings />
+          <div className={style.animationCol}>
+            <AnimationPreview />
           </div>
+
+          <Chat />
         </div>
-
-        {selectedLayers.length === 1 && (
-          <LayerActions layerKey={selectedLayers[0]} />
-        )}
-
-        {selectedLayers.length > 1 && (
-          <MultipleLayerActions count={selectedLayers.length} />
-        )}
-
-        <div className={clsx(style.card, style.layersCard)}>
-          <div className={style.cardTitle}>
-            <div className={style.layersCardHeader}>
-              <div>Layers</div>
-            </div>
-          </div>
-          <div className={style.layersCardHelper}>
-            Shift + Click for multi-select
-          </div>
-          {json?.layers?.length ? (
-            <Layers
-              layers={json.layers}
-              path="layers"
-              className={style.layers}
-            />
-          ) : (
-            <div className={style.noLayersText}>No layers found.</div>
-          )}
-        </div>
-      </div>
-
-      <div className={style.animationCol}>
-        <AnimationPreview />
-      </div>
-
-      <ChatComponent />
-    </div>
+      </Container>
+    </>
   );
 }

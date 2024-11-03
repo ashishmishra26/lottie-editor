@@ -1,5 +1,6 @@
 import { Animation } from "@lottiefiles/lottie-types";
 import { useMutation } from "@tanstack/react-query";
+import { Icon } from "@iconify/react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +29,7 @@ export default function Upload() {
   });
 
   const style = {
-    title: "heading text-xl lg:text-4xl font-bold text-t-text",
+    title: "heading text-xl lg:text-3xl font-bold text-t-text",
     description: "text-base lg:text-xl mt-3 lg:mt-5",
     buttonWrapper:
       "flex flex-col just justify-center items-center gap-4 lg:gap-6 border-dashed border-2 border-t-border rounded-xl p-6",
@@ -41,12 +42,19 @@ export default function Upload() {
   return (
     <div className="h-full">
       <div className={style.buttonWrapper}>
-        <h1 className={style.title}>Upload the animation JSON</h1>
+        <h2 className={style.title}>Upload the animation JSON</h2>
         <button
           className={style.uploadBtn}
           onClick={() => input.current?.click()}
         >
-          {playgroundIsOpening ? <span>Loading...</span> : <span>Upload</span>}
+          {playgroundIsOpening ? (
+            <span>Loading...</span>
+          ) : (
+            <span>
+              <Icon icon="ri:upload-line" className="inline mr-2" />
+              Upload
+            </span>
+          )}
         </button>
 
         <input
@@ -59,7 +67,7 @@ export default function Upload() {
 
         {!!error && (
           <div className={style.error}>
-            We couldn&apos;t parse your JSON. Please try again
+            Failed to parse JSON, Please try again.
           </div>
         )}
       </div>

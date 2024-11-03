@@ -9,6 +9,8 @@ import "./index.css";
 
 const queryClient = new QueryClient();
 
+window.global = globalThis;
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
