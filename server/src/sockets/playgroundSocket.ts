@@ -79,7 +79,7 @@ export default async function playgroundSocket(fastify: FastifyInstance) {
                 currentJSON = set(
                   currentJSON,
                   data.path,
-                  (get(currentJSON, data.path) as any[]).filter(
+                  (get(currentJSON, data.path) as any[])?.filter(
                     (_, i) => i !== data.index
                   )
                 );
