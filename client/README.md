@@ -1,1 +1,1 @@
-# Lottie Room Client
+# Lottie Editor Client
