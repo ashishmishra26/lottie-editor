@@ -115,12 +115,12 @@ export function Playground() {
     layout:
       "overflow-hidden flex flex-col lg:h-screen lg:grid lg:grid-cols-[18rem,1fr]",
     col: "flex flex-col px-3 lg:p-3 lg:pl-0 last:mt-3 lg:last:mt-0 last:pb-3 gap-3 flex-1 overflow-hidden",
-    card: "theme-neutral-light dark:theme-neutral flex flex-col bg-t-bg text-t-text-light border border-t-border rounded-md overflow-auto relative shadow-sm",
+    card: "flex flex-col bg-t-bg text-t-text-light border border-t-border rounded-md overflow-auto relative shadow-sm",
     cardTitle:
       "text-t-text text-base border-b bg-t-bg border-t-border px-3 py-2 heading sticky top-0 bg z-[1]",
     cardContent: "p-3 w-full",
     animationCol: "order-[-1] h-[100vw] lg:order-none lg:h-auto p-4",
-    layersCard: "max-h-[15rem] lg:max-h-none flex-1",
+    layersCard: "bg-t-bg max-h-[15rem] lg:max-h-none flex-1",
     layersCardHeader: "flex items-center justify-between gap-3",
     layersCardHelper:
       "hidden lg:block text-xs p-3 border-b border-t-border text-t-text-light font-normal",

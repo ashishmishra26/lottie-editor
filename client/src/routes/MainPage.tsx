@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import useAPI from "../hooks/useAPI";
 import Upload from "../components/Upload";
 import Card from "../components/Card";
+import { Icon } from "@iconify/react";
 
 export default function MainPage() {
   const { getFeaturedAnimations } = useAPI();
@@ -71,7 +72,7 @@ export default function MainPage() {
               ))}
           </div>
           {isFetchingNextPage && (
-            <p className="text-center mt-4">Loading more animations...</p>
+            <Icon icon="ri:loading-line" />
           )}
           {/* Div to trigger fetching more items when it comes into view */}
           <div ref={loadMoreRef} className="h-10"></div>

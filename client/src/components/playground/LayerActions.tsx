@@ -51,7 +51,10 @@ export default function LayerActions({ layerKey }: LayerActionsProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-0 dark:bg-black lg:bottom-8 left-0 lg:left-80 w-full lg:w-80 p-4 bg-t-bg rounded-lg shadow-lg space-y-4 z-50">
+    <div
+      className="fixed border border-t-border bottom-0lg:bottom-8 left-0 lg:left-80 w-full lg:w-80 p-4 bg-t-bg rounded-lg shadow-lg space-y-4 z-50 overflow-y-scroll"
+      style={{ maxHeight: "650px" }}
+    >
       <div className="flex items-center justify-between">
         <button
           onClick={() => setIsOpen(false)}
@@ -70,7 +73,7 @@ export default function LayerActions({ layerKey }: LayerActionsProps) {
       {!!Object.keys(layerColors).length && (
         <div>
           <div className="text-sm font-semibold text-t-text mb-1">Colors</div>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap justify-between gap-1.5">
             {Object.entries(layerColors).map(([key, color]) => (
               <ColorEditor
                 color={color}

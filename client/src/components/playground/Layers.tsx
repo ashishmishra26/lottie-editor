@@ -93,7 +93,7 @@ function Layer({ layer, index, path, level }: LayerProps) {
     <div className="select-none">
       <div
         className={clsx(
-          "flex items-center gap-3 px-3 py-1.5 group border border-transparent hover:border-t-text",
+          "flex items-center gap-3 px-3 py-1.5 group border border-transparent hover:bg-gray-100 hover:dark:bg-slate-800",
           selectedLayers.includes(layerKey)
             ? "theme-neutral-light-tint dark:theme-neutral-tint bg-t-bg text-t-text font-semibold"
             : "hover:text-t-text"
