@@ -36,7 +36,7 @@ export default function Card({ animation }: AnimationCardProps) {
   const style = {
     card: "text-t-text-light rounded-xl group transition-opacity relative overflow-hidden",
     imageWrapper:
-      "block pb-[100%] w-full relative h-0 border rounded-[0.875rem] overflow-hidden theme-neutral-light dark:theme-neutral bg transition-[border-color] group-hover:border-t-text",
+      "block pb-[100%] w-full relative h-0 border-2 border-t-border rounded-[0.875rem] overflow-hidden theme-neutral-light dark:theme-neutral bg transition-[border-color]",
     image: "absolute inset-px",
     noImage: "w-10 h-10 m-auto inset-0 absolute opacity-50",
     content: "mt-2.5",

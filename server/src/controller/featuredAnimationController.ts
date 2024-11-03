@@ -26,7 +26,7 @@ export default async function featuredAnimationsController(
       const { data } = await client.query({
         query: gql`
           {
-            featuredPublicAnimations(first: 12, after: ${cursor ? `"${cursor}"` : null}) {
+            featuredPublicAnimations(first: 15, after: ${cursor ? `"${cursor}"` : null}) {
               edges {
                 cursor
                 node {

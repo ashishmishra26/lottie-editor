@@ -1,11 +1,14 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRef, useCallback, Fragment } from "react";
+import Lottie from "lottie-react";
+
 import Container from "../components/Container";
 import Header from "../components/Header";
 import useAPI from "../hooks/useAPI";
 import Upload from "../components/Upload";
 import Card from "../components/Card";
-import { Icon } from "@iconify/react";
+
+import loadingJSON from "../assets/loading.json";
 
 export default function MainPage() {
   const { getFeaturedAnimations } = useAPI();
@@ -53,7 +56,7 @@ export default function MainPage() {
         <div className={style.featured}>
           <div className={style.grid}>
             {!isFetched &&
-              Array(12)
+              Array(15)
                 .fill(null)
                 .map((_, i) => <Card animation={null} key={i} />)}
             {isFetched &&
@@ -72,9 +75,13 @@ export default function MainPage() {
               ))}
           </div>
           {isFetchingNextPage && (
-            <Icon icon="ri:loading-line" />
+            <div className="w-full flex justify-center">
+              <Lottie
+                animationData={loadingJSON}
+                className="h-36 w-96 flex"
+              />
+            </div>
           )}
-          {/* Div to trigger fetching more items when it comes into view */}
           <div ref={loadMoreRef} className="h-10"></div>
         </div>
       </Container>
