@@ -38,17 +38,19 @@ export default function Card({ animation }: AnimationCardProps) {
     });
 
   const style = {
-    card: "text-t-text-light rounded-2xl group transition-opacity",
+    card: "text-t-text-light rounded-xl group transition-opacity relative overflow-hidden",
     imageWrapper:
       "block pb-[100%] w-full relative h-0 border rounded-[0.875rem] overflow-hidden theme-neutral-light dark:theme-neutral bg transition-[border-color] group-hover:border-t-text",
     image: "absolute inset-px",
     noImage: "w-10 h-10 m-auto inset-0 absolute opacity-50",
     content: "mt-2.5",
-    name: "block text-sm lg:text-base group-hover:text-t-text transition-colors flex-1",
+    overlay:
+      "absolute inset-x-0 bottom-0 flex flex-col p-4 transition-transform duration-300 ease-in-out transform translate-y-full opacity-90 bg-white bg-opacity-90 group-hover:translate-y-0 group-hover:opacity-100",
+    name: "block font-bold text-sm lg:text-base transition-colors",
     author:
       "flex items-center gap-2 text-xs lg:text-sm mt-1.5 flex-1 overflow-hidden transition-colors hover:text-t-text",
     avatar: "w-4 h-4 rounded-full shrink-0",
-    authorName: "truncate",
+    authorName: "truncate mt-1",
     likes: "flex text-sm items-center gap-1",
     likesIcon: "w-3 lg:w-4 h-3 lg:h-4",
     loaderIcon:
@@ -81,34 +83,19 @@ export default function Card({ animation }: AnimationCardProps) {
         )}
       </button>
 
-      <div className={style.content}>
-        <div className="flex items-start justify-between gap-4">
-          {/* Animation name */}
-          <Link to={`/lottie/${animation?.id}`} className={style.name}>
-            {animation ? (
-              animation.name
-            ) : (
-              <div className="w-full">
-                <SkeletonText lines={2} />
-              </div>
-            )}
-          </Link>
-
-          {/* Likes */}
+      {/* Overlay for Hover Effect */}
+      <div className={style.overlay}>
+        <div className="flex justify-between items-center">
+          <div className={style.name}>
+            {animation ? animation.name : <SkeletonText lines={1} />}
+          </div>
           <div className={style.likes}>
             <Icon icon="ri:heart-line" className={style.likesIcon} />
             <span>
-              {animation ? (
-                animation.likesCount
-              ) : (
-                <span className="w-5 block">
-                  <SkeletonText fullWidth />
-                </span>
-              )}
+              {animation ? animation.likesCount : <SkeletonText fullWidth />}
             </span>
           </div>
         </div>
-
         {/* Author */}
         <a
           href={`https://lottiefiles.com${animation?.createdBy?.username}`}
@@ -132,9 +119,7 @@ export default function Card({ animation }: AnimationCardProps) {
                 animation.createdBy.lastName
               )
             ) : (
-              <span className="w-28 block">
-                <SkeletonText fullWidth />{" "}
-              </span>
+              <SkeletonText fullWidth />
             )}
           </div>
         </a>

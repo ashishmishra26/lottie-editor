@@ -111,16 +111,16 @@ export function Playground() {
 
   const style = {
     layout:
-      "overflow-hidden flex flex-col lg:h-screen lg:grid lg:grid-cols-[18rem,1fr,18rem]",
+      "overflow-hidden flex flex-col lg:h-screen lg:grid lg:grid-cols-[18rem,1fr]",
     col: "flex flex-col px-3 lg:p-3 last:mt-3 lg:last:mt-0 last:pb-3 gap-3 flex-1 overflow-hidden",
-    card: "theme-neutral-light dark:theme-neutral flex flex-col bg-t-bg text-t-text-light border border-t-border rounded-2xl overflow-auto relative shadow-sm",
+    card: "theme-neutral-light dark:theme-neutral flex flex-col bg-t-bg text-t-text-light border border-t-border rounded-md overflow-auto relative shadow-sm",
     cardTitle:
       "text-t-text text-base border-b bg-t-bg border-t-border px-3 py-2 heading sticky top-0 bg z-[1]",
     cardContent: "p-3 w-full",
     animationCol: "order-[-1] h-[100vw] lg:order-none lg:h-auto p-4",
     layersCard: "max-h-[15rem] lg:max-h-none flex-1",
     layersCardHeader: "flex items-center justify-between gap-3",
-    layersCardHelper: "hidden lg:block text-xs text-t-text-light font-normal",
+    layersCardHelper: "hidden lg:block text-xs p-3 border-b border-t-border text-t-text-light font-normal",
     layers: "py-1",
     noLayersText: "text-t-text-light p-3 text-sm",
     discussionCard: "absolute h-[24rem] lg:h-auto lg:flex-grow",
@@ -157,40 +157,27 @@ export function Playground() {
         )}
 
         <div className={clsx(style.card, style.settingsCard)}>
-          <div className={style.cardTitle}>Settings</div>
           <div className={style.cardContent}>
             <Settings />
           </div>
         </div>
 
         {selectedLayers.length === 1 && (
-          <div className={clsx(style.card, style.selectedLayerActionsCard)}>
-            <div className={style.cardTitle}>Selected layer</div>
-            <div className={style.cardContent}>
-              <LayerActions layerKey={selectedLayers[0]} />
-            </div>
-          </div>
+          <LayerActions layerKey={selectedLayers[0]} />
         )}
 
         {selectedLayers.length > 1 && (
-          <div className={clsx(style.card, style.multipleLayerActionsCard)}>
-            <div className={style.cardTitle}>
-              Selected layers ({selectedLayers.length})
-            </div>
-            <div className={style.cardContent}>
-              <MultipleLayerActions />
-            </div>
-          </div>
+          <MultipleLayerActions count={selectedLayers.length} />
         )}
 
         <div className={clsx(style.card, style.layersCard)}>
           <div className={style.cardTitle}>
             <div className={style.layersCardHeader}>
               <div>Layers</div>
-              <div className={style.layersCardHelper}>
-                Shift + Click for multi-select
-              </div>
             </div>
+          </div>
+          <div className={style.layersCardHelper}>
+            Shift + Click for multi-select
           </div>
           {json?.layers?.length ? (
             <Layers
@@ -199,7 +186,7 @@ export function Playground() {
               className={style.layers}
             />
           ) : (
-            <div className={style.noLayersText}>No layers available.</div>
+            <div className={style.noLayersText}>No layers found.</div>
           )}
         </div>
       </div>
@@ -208,11 +195,7 @@ export function Playground() {
         <AnimationPreview />
       </div>
 
-      <div className={style.col}>
-        <div className={clsx(style.card, style.discussionCard)}>
-          <ChatComponent />
-        </div>
-      </div>
+      <ChatComponent />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import type { Layer } from "@lottiefiles/lottie-types";
 import clsx from "clsx";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 import useShift from "../../hooks/useShift.tsx";
@@ -61,6 +61,8 @@ function Layer({ layer, index, path, level }: LayerProps) {
       }))
     );
 
+  const [isExpanded, setIsExpanded] = useState(true);
+
   function deleteLayer() {
     selectedLayers
       .filter((l) => l.startsWith(layerKey))
@@ -83,6 +85,10 @@ function Layer({ layer, index, path, level }: LayerProps) {
     selectLayer(layerKey);
   }
 
+  function toggleExpand() {
+    setIsExpanded((prev) => !prev);
+  }
+
   return (
     <div className="select-none">
       <div
@@ -101,6 +107,14 @@ function Layer({ layer, index, path, level }: LayerProps) {
               <div className="w-1 h-1 rounded-full bg-current opacity-50"></div>
             </div>
           ))}
+        {layer.layers?.length ? (
+          <button onClick={toggleExpand} className="text-sm mr-2">
+            <Icon
+              icon={isExpanded ? "mdi:chevron-down" : "mdi:chevron-right"}
+              className="w-4 h-4"
+            />
+          </button>
+        ) : null}
         <div className="text-sm leading-relaxed flex-1 truncate">
           {layer.nm}
         </div>
@@ -109,7 +123,7 @@ function Layer({ layer, index, path, level }: LayerProps) {
         </div>
       </div>
 
-      {!!layer.layers?.length && (
+      {isExpanded && !!layer.layers?.length && (
         <Layers
           layers={layer.layers}
           path={path + "." + index + ".layers"}

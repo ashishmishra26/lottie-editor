@@ -7,8 +7,6 @@ import router from "./router";
 
 import "./index.css";
 
-window.global = globalThis;
-
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(

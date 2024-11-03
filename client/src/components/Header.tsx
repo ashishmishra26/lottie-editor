@@ -1,7 +1,6 @@
 import Container from "./Container.tsx";
 
 import Logo from "../assets/lottiefiles.svg";
-import ToggleDarkMode from "./ToggleDarkMode.tsx";
 
 export default function Header() {
   const style = {
@@ -19,7 +18,6 @@ export default function Header() {
           <img src={Logo} style={{ width: "20px", height: "20px" }}></img>
           <h2 className="font-bold">Lottie Editor</h2>
         </div>
-        <ToggleDarkMode className={style.darkModeButton} />
       </Container>
     </header>
   );

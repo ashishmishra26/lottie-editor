@@ -28,9 +28,10 @@ export default function Upload() {
   });
 
   const style = {
-    title: "heading text-2xl lg:text-4xl font-bold text-t-text",
+    title: "heading text-xl lg:text-4xl font-bold text-t-text",
     description: "text-base lg:text-xl mt-3 lg:mt-5",
-    buttonWrapper: "flex flex-col just justify-center items-center gap-4 lg:gap-6 mt-4 lg:mt-6 border-dashed border-2 border-t-border rounded-xl p-6",
+    buttonWrapper:
+      "flex flex-col just justify-center items-center gap-4 lg:gap-6 border-dashed border-2 border-t-border rounded-xl p-6",
     uploadBtn:
       "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded",
     error:
@@ -38,7 +39,7 @@ export default function Upload() {
   };
 
   return (
-    <div>
+    <div className="h-full">
       <div className={style.buttonWrapper}>
         <h1 className={style.title}>Upload the animation JSON</h1>
         <button
