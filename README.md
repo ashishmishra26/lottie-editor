@@ -75,3 +75,11 @@ Note: Check `server/README.md` for instructions to run server locally.
     ```
 
 5. Open a Pull Request for review.
+
+
+### Working Demo
+
+Note: Could not deploy dure to time constraint, here is the working demo of the app.
+
+https://github.com/user-attachments/assets/60c166a7-6774-41c7-8309-fe86adc0f3ca
+
