@@ -17,7 +17,7 @@ export default function Header() {
       <Container className={style.container}>
         <div className="flex items-center gap-2">
           <img src={Logo} style={{ width: "20px", height: "20px" }}></img>
-          <span>Lottie Editor</span>
+          <h2 className="font-bold">Lottie Editor</h2>
         </div>
         <ToggleDarkMode className={style.darkModeButton} />
       </Container>

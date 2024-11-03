@@ -1,37 +1,28 @@
 import { Icon } from "@iconify/react";
 import clsx from "clsx";
-
-import { useEffect, useState } from "react";
+import useDarkMode from "use-dark-mode";
 
 type ToggleDarkModeProps = {
   className?: string;
 };
 
+const darkModeConfig = {
+  classNameDark: "dark",
+  classNameLight: "light",
+  element: document.documentElement,
+};
+
 export default function ToggleDarkMode({ className }: ToggleDarkModeProps) {
-  const [dark, setDark] = useState(true);
-
-  const handleToggleDarkMode = () => {
-    setDark(!dark);
-  };
-
-  useEffect(() => {
-    if(dark) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-    }
-  }, [dark]);
+  const darkMode = useDarkMode(false, darkModeConfig);
 
   return (
     <button
       type="button"
-      onClick={handleToggleDarkMode}
+      onClick={darkMode.toggle}
       className={clsx("flex transition-colors hover:text-t-text", className)}
     >
       <Icon
-        icon={dark ? "ri:moon-line" : "ri:sun-line"}
+        icon={darkMode.value ? "ri:moon-line" : "ri:sun-line"}
         className="w-full h-full"
       />
     </button>
